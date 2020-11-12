@@ -14,6 +14,7 @@ jobs:
       install:
         - gradle assemble
       script:
+        - gradle --version
         - gradle test --info
 
 stages:
