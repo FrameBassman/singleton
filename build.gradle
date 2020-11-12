@@ -37,3 +37,5 @@ dependencies {
 
 sourceSets.main.groovy.srcDir files('src', 'pipelines')
 sourceSets.test.groovy.srcDir files('test')
+
+
