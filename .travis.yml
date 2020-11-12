@@ -1,6 +1,6 @@
 jobs:
   include:
-    - stage: gradle5
+    - stage: gradle4
       language: java
       dist: trusty
       jdk: oraclejdk8
@@ -22,7 +22,29 @@ jobs:
       script:
         - gradle test --info
 
+    - stage: gradle5
+      language: java
+      dist: trusty
+      jdk: oraclejdk8
+      before_cache:
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+          - $HOME/.gradle/wrapper/
+      before_install:
+        - wget https://services.gradle.org/distributions/gradle-5.6.4-bin.zip
+        - unzip -qq gradle-5.6.4-bin.zip
+        - export GRADLE_HOME=$PWD/gradle-5.6.4
+        - export PATH=$GRADLE_HOME/bin:$PATH
+      install:
+        - gradle --version
+        - gradle assemble
+      script:
+        - gradle test --info
 stages:
+  - gradle4
   - gradle5
 branches:
   only:
