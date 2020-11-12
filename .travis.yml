@@ -12,9 +12,9 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
       install:
+        - gradle --version
         - gradle assemble
       script:
-        - gradle --version
         - gradle test --info
 
 stages:
