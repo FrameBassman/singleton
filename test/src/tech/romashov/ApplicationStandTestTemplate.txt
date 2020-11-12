@@ -1,0 +1,8 @@
+package src.tech.romashov.dummy
+
+import org.junit.Test
+import tech.romashov.domain.ApplicationStand
+
+class ApplicationStandTest%number% {
+    %methods%
+}
