@@ -12,10 +12,11 @@ class TestGenerator {
             "        ApplicationStand stand = new ApplicationStand()\n" +
             "        stand.build()\n" +
             "    }"
+    Integer MAX_COUNT = 100
 
     @Test @Ignore
     void itWorks() {
-        for (i in 0..<10) {
+        for (i in 0..<MAX_COUNT) {
             writeToFile(
                     generateClass(generateFileTemplate(), i),
                     "ApplicationStandTest${i}.groovy"
@@ -43,7 +44,7 @@ class TestGenerator {
 
     String generateClass(String template, int index) {
         String result = template.replace('%number%', index.toString())
-        result = result.replace('%methods%', generateMethods(20))
+        result = result.replace('%methods%', generateMethods(MAX_COUNT))
         return result
     }
 
