@@ -4,7 +4,7 @@ import com.lesfurets.jenkins.unit.BasePipelineTest
 import org.junit.Before
 import org.junit.Test
 
-class ApplicationPipelineTest extends BasePipelineTest {
+class ApplicationPipelineTest%number% extends BasePipelineTest {
     @Override
     @Before
     void setUp() throws Exception {
@@ -12,9 +12,5 @@ class ApplicationPipelineTest extends BasePipelineTest {
         helper.registerAllowedMethod('echo', [String.class])
     }
 
-    @Test
-    void itShouldWorks() throws Exception {
-        runScript("pipelines/tech/romashov/ApplicationPipeline.groovy")
-        assertJobStatusSuccess()
-    }
+    %methods%
 }
