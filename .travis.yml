@@ -1,0 +1,13 @@
+language: csharp
+dist: trusty
+sudo: required
+mono: none
+branches:
+  only:
+    - /.*/
+script:
+  - printenv
+notifications:
+  email:
+    on_success: never
+    on_failure: always
