@@ -1,9 +1,11 @@
 jobs:
   include:
-    - stage: gradle4
+    - stage: test
       language: java
       dist: trusty
       jdk: oraclejdk8
+      env:
+        - VERSION=4.8.1
       before_cache:
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -12,9 +14,9 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
       before_install:
-        - wget https://services.gradle.org/distributions/gradle-4.8.1-bin.zip
-        - unzip -qq gradle-4.8.1-bin.zip
-        - export GRADLE_HOME=$PWD/gradle-4.8.1
+        - wget https://services.gradle.org/distributions/gradle-$VERSION-bin.zip
+        - unzip -qq gradle-$VERSION-bin.zip
+        - export GRADLE_HOME=$PWD/gradle-$VERSION
         - export PATH=$GRADLE_HOME/bin:$PATH
       install:
         - gradle --version
@@ -22,10 +24,12 @@ jobs:
       script:
         - gradle test --info
 
-    - stage: gradle5
+    - stage: test
       language: java
       dist: trusty
       jdk: oraclejdk8
+      env:
+        - VERSION=5.6.4
       before_cache:
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
         - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -34,9 +38,9 @@ jobs:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
       before_install:
-        - wget https://services.gradle.org/distributions/gradle-5.6.4-bin.zip
-        - unzip -qq gradle-5.6.4-bin.zip
-        - export GRADLE_HOME=$PWD/gradle-5.6.4
+        - wget https://services.gradle.org/distributions/gradle-$VERSION-bin.zip
+        - unzip -qq gradle-$VERSION-bin.zip
+        - export GRADLE_HOME=$PWD/gradle-$VERSION
         - export PATH=$GRADLE_HOME/bin:$PATH
       install:
         - gradle --version
@@ -44,8 +48,7 @@ jobs:
       script:
         - gradle test --info
 stages:
-  - gradle4
-  - gradle5
+  - test
 branches:
   only:
     - /.*/
