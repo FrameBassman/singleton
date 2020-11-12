@@ -11,6 +11,11 @@ jobs:
         directories:
           - $HOME/.gradle/caches/
           - $HOME/.gradle/wrapper/
+      before_install:
+        - wget http://services.gradle.org/distributions/gradle-4.8.1-bin.zip
+        - unzip -qq gradle-4.8.1-bin.zip
+        - export GRADLE_HOME=$PWD/gradle-4.8.1
+        - export PATH=$GRADLE_HOME/bin:$PATH
       install:
         - gradle --version
         - gradle assemble
